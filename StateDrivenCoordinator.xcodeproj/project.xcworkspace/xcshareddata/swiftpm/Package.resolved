@@ -1,0 +1,50 @@
+{
+  "pins" : [
+    {
+      "identity" : "convenient-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kikiwora/Convenient-Collections",
+      "state" : {
+        "revision" : "6fbef963c1f9bee9798fe532f589cb91a31e39f1",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "convenient-concurrency",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kikiwora/Convenient-Concurrency",
+      "state" : {
+        "revision" : "5b4a545ef8994493e214fbefc54eec2418af582a",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "convenient-operators",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kikiwora/Convenient-Operators",
+      "state" : {
+        "revision" : "def3c9f409733dde564dd79958715559e585ab14",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "parchment",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rechsteiner/Parchment",
+      "state" : {
+        "revision" : "28f8f2cb70221dc27e220b043d6e927ada5c5fdb",
+        "version" : "3.3.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
+      }
+    }
+  ],
+  "version" : 2
+}
