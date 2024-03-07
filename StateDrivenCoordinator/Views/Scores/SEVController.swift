@@ -1,7 +1,6 @@
 //  Created by Roman Suvorov (kikiwora)
 
 import UIKit
-import OSLog
 import SnapKit
 import Convenient_Operators
 
@@ -41,7 +40,7 @@ class SEVController: NiblessController {
   // ⚠️ NOTE: When flow operate child controllers, there is an issue that controller can be dismissed without flow knowing
   // Somehow we have to path information about controller being decommissioned to flow which manages it
   // Obviously, this is not an ideal solution, since it requires us to be couscous about retain cycle which will break Flows
-  // The alternative, though, is worse — to become a delegate of a shared navigation controller and switch delegate between flows on start / decomission
+  // The alternative, though, is worse — to become a delegate of a shared navigation controller and switch delegate between flows on start / decommission
   deinit {
     navigation?.decommissionSEVController()
   }

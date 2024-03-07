@@ -72,7 +72,7 @@ class TabbedContainerController<ScreenID: AnyTaggedType>: NiblessController, Pag
     destinationViewController: UIViewController,
     transitionSuccessful: Bool
   ) {
-    let indexedTabItem = pagingItem as! PagingIndexItem
+    let indexedTabItem = pagingItem as! PagingIndexItem // swiftlint:disable:this force_cast
     let toTabID: ScreenID = tabItemByID[indexedTabItem.index].key
     navigation?.didScrollToTab(by: toTabID)
   }
@@ -81,7 +81,7 @@ class TabbedContainerController<ScreenID: AnyTaggedType>: NiblessController, Pag
     _ pagingViewController: PagingViewController,
     didSelectItem pagingItem: PagingItem
   ) {
-    let indexedTabItem = pagingItem as! PagingIndexItem
+    let indexedTabItem = pagingItem as! PagingIndexItem  // swiftlint:disable:this force_cast
     let selectedTabID: ScreenID = tabItemByID[indexedTabItem.index].key
     navigation?.didSelectTab(by: selectedTabID)
   }

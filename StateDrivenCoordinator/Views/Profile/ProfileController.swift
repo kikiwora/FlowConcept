@@ -1,7 +1,6 @@
 //  Created by Roman Suvorov (kikiwora)
 
 import UIKit
-import OSLog
 import Convenient_Operators
 
 // MARK: - ProfileNavProtocol

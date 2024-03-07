@@ -2,131 +2,84 @@
 
 import UIKit
 import Convenient_Operators
-import Convenient_Collections
-import Convenient_Concurrency
-import OSLog
+
+// MARK: - ScoresFlowScreen
+
+enum ScoresFlowScreen: ScreenID, ScreenEnumType {
+  case scores
+  case sev
+  case details
+}
 
 // MARK: - ScoresFlow
 
-final class ScoresFlow: AnyFlow { typealias ScreenID = TaggedType<String, ScoresFlow>
-  enum Screen: ScreenID {
-    case scores
-    case sev
-    case details
-  }
-
-  // MARK: - Subflow graph
-
-  private(set) lazy var screenStack: [Screen] = [initialScreen] { didSet {
-    NotificationCenter.default.post(name: .didChangePath, object: nil)
-  }}
-
-  var currentScreen: Screen { screenStack.last! } // swiftlint:disable:this force_unwrapping
-  private(set) var initialScreen: Screen = .scores
-
-  private(set) var childFlowsByScreen: OrderedDictionary<Screen, Weak<BaseFlow>> = .empty
+final class ScoresFlow: BaseFlow<ScoresFlowScreen> {
+  override var initialScreen: Screen { .scores }
 
   // MARK: - Child controllers
 
-  private weak var initialController: UIViewController?
+  private unowned var initialController: UIViewController! // swiftlint:disable:this implicitly_unwrapped_optional
 
   // MARK: - Life cycle
 
   override func start() { super.start()
-    guard let sharedNavigationController else {
-      fatalError("Attempt to start ScoresFlow without parent navigation controller")
-    }
-
     placeInitialController(into: sharedNavigationController)
   }
 
-  private func placeInitialController(into sharedNavigationController: UINavigationController) {
-    let newScores = ScoresController() => { $0.navigation = self }
-    sharedNavigationController.setViewControllers([newScores], animated: false)
-    initialController = newScores
-  }
-
-  // MARK: - Public interface
-
-  func navigate(by path: [FlowPath]) {
-    var path = path
-    let first = path.removeFirst()
-
-    if let screen = Screen(rawValue: ScreenID(value: first.value)) {
-      navigate(to: screen)
+  override func navigate(to screen: Screen) {
+    if screen == initialScreen && currentScreen != screen {
+      returnToInitialScreen()
     }
 
-    currentChildFlow?.navigate(by: path)
+    switch screen {
+    case .details:
+      // Flow is started because it defines how exactly
+      startSubFlow(by: screen)
+
+    default:
+      // Module is pushed because this Flow defines that
+      pushModule(by: screen)
+    }
   }
 
   // MARK: - Private methods
 
-  private func navigate(to screen: Screen) {
-    switch screen {
+  private func placeInitialController(into sharedNavigationController: UINavigationController) {
+    let newInitial = Factory.makeModule(by: initialScreen, flow: self) => { self.initialController = $0 }
+
+    switch initialScreen {
     case .scores:
-      returnToInitialScreen()
+      sharedNavigationController.setViewControllers([newInitial], animated: false)
 
-    case .sev:
-      pushController(by: .sev)
-
-    case .details:
-      startFlow(by: .details)
+    default:
+      fatalError("\(initialScreen) cannot be entry point")
     }
+
+    super.didStartSubModule(newInitial, for: initialScreen, presentationType: .replace)
+  }
+
+  private func startSubFlow(by screen: Screen) {
+    let decommissionHandler: FlowDecommissionHandler = { [weak self] flowID, screen in
+      self?.didDecommissionSubFlow(flowID, for: screen)
+    }
+
+    let newFlow = Factory.makeFlow(by: screen, withNavigation: sharedNavigationController, onDecommission: decommissionHandler)
+
+    newFlow.start()
+    super.didStartSubFlow(newFlow, for: screen, presentationType: .replace)
+  }
+
+  private func pushModule(by screen: Screen) {
+    let newController = Factory.makeModule(by: screen, flow: self)
+
+    sharedNavigationController.pushViewController(newController, animated: true)
+    super.didStartSubModule(newController, for: screen, presentationType: .push)
   }
 
   private func returnToInitialScreen() {
-    guard let initialController else { fatalError("Attempt to navigate to nil controller") }
-
-    sharedNavigationController?.popToViewController(initialController, animated: true)
-    screenStack = [.scores]
+    sharedNavigationController.popToViewController(initialController, animated: true)
+    super.didReturnToRoot()
   }
-
-  private func startFlow(by screen: Screen) {
-    guard let newFlow: BaseFlow = flowFactories[screen]?() else {
-      fatalError("\(self.className) have been unable to start a child flow for screen \(screen)")
-    }
-
-    let newFlowID = newFlow.id
-
-    newFlow.onDecomission = { [weak self] in
-      guard self?.initialController.isNotNil == true else { return }
-      self?.childFlowsByID.removeValue(forKey: newFlowID)
-      self?.screenStack.removeLast(screen)
-    }
-
-    childFlowsByID[newFlow.id] = newFlow
-    childFlowsByScreen[screen] = newFlow
-
-    newFlow.start()
-    screenStack.append(screen)
-  }
-
-  private func pushController(by screen: Screen) {
-    guard let newController: UIViewController = moduleFactories[screen]?() else {
-      fatalError("No controller factory for \(screen.rawValue)")
-    }
-
-    sharedNavigationController?.pushViewController(newController, animated: true)
-    screenStack.append(screen)
-  }
-
-  // MARK: - Flow factories
-
-  private(set) lazy var flowFactories: [Screen: FlowFactory] = [
-    .details: { [weak self] in
-      guard let self else {
-        fatalError("Attempt to launch a Child flow \(SEVDetailsFlow.className) in a nil \(ScoresFlow.className) ")
-      }
-      guard let sharedNavigationController = self.sharedNavigationController else {
-        fatalError("Attempt to launch a Child flow \(SEVDetailsFlow.className) in a nil sharedNavigationController of \(ScoresFlow.className) without ")
-      }
-
-      return SEVDetailsFlow(with: sharedNavigationController)
-    }
-  ]
-  private(set) lazy var moduleFactories: [Screen: ModuleFactory] = [
-    .sev: { [weak self] in SEVController() => { $0.navigation = self } }
-  ]
 }
 
 // MARK: - ScoresNavProtocol
@@ -151,8 +104,6 @@ extension ScoresFlow: SEVControllerNavProtocol {
   }
 
   func decommissionSEVController() {
-    // ⚠️ NOTE: This implementation is questionable
-    guard initialController.isNotNil else { return }
-    screenStack.removeLast(.sev)
+    super.didDecommissionSubModule(for: .sev)
   }
 }

@@ -14,6 +14,8 @@
 		1E05E3622B83FAD600F22AA0 /* Convenient Concurrency in Frameworks */ = {isa = PBXBuildFile; productRef = 1E05E3612B83FAD600F22AA0 /* Convenient Concurrency */; };
 		1E05E3652B83FAE100F22AA0 /* Convenient Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 1E05E3642B83FAE100F22AA0 /* Convenient Collections */; };
 		1E05E3682B83FB0700F22AA0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E05E3672B83FB0700F22AA0 /* SnapKit */; };
+		1E2B25562B98F48600F72687 /* FlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2B25552B98F48600F72687 /* FlowProtocol.swift */; };
+		1E2B25592B990E3F00F72687 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2B25582B990E3F00F72687 /* Tags.swift */; };
 		1E41CD1F2B95DADF003EB9B4 /* View+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E41CD1E2B95DADF003EB9B4 /* View+SnapKit.swift */; };
 		1E41CD212B95DB04003EB9B4 /* NiblessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E41CD202B95DB04003EB9B4 /* NiblessController.swift */; };
 		1E41CD232B95DB1D003EB9B4 /* KindaTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E41CD222B95DB1D003EB9B4 /* KindaTabController.swift */; };
@@ -34,9 +36,16 @@
 		1E70F8552B97244B00E4FBE7 /* TabbedContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E70F8542B97244B00E4FBE7 /* TabbedContainerController.swift */; };
 		1E70F8572B972BD600E4FBE7 /* SEVDetailsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E70F8562B972BD600E4FBE7 /* SEVDetailsFlow.swift */; };
 		1E70F85B2B97477100E4FBE7 /* SEVSubDetailsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E70F85A2B97477100E4FBE7 /* SEVSubDetailsFlow.swift */; };
+		1E71E9A92B991642000ADAE4 /* MainFlow+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71E9A82B991642000ADAE4 /* MainFlow+Factory.swift */; };
+		1E71E9AC2B991727000ADAE4 /* PathObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71E9AB2B991727000ADAE4 /* PathObserver.swift */; };
+		1E71E9AE2B99188A000ADAE4 /* ProfileFlow+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71E9AD2B99188A000ADAE4 /* ProfileFlow+Factory.swift */; };
+		1E71E9B02B991915000ADAE4 /* FavouritesFlow+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71E9AF2B991915000ADAE4 /* FavouritesFlow+Factory.swift */; };
+		1E71E9B22B992069000ADAE4 /* ScoresFlow+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71E9B12B992069000ADAE4 /* ScoresFlow+Factory.swift */; };
+		1E71E9B42B9925AE000ADAE4 /* SEVDetailsFlow+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71E9B32B9925AE000ADAE4 /* SEVDetailsFlow+Factory.swift */; };
 		1E9216C32B84A85B0026B5D9 /* TaggedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9216C22B84A85B0026B5D9 /* TaggedType.swift */; };
 		1E9216CC2B84ACFF0026B5D9 /* BaseFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9216CB2B84ACFF0026B5D9 /* BaseFlow.swift */; };
 		1E9216D32B85DAF60026B5D9 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9216D22B85DAF60026B5D9 /* OrderedDictionary.swift */; };
+		1EB641C42B98D45F005E0536 /* FlowPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB641C32B98D45F005E0536 /* FlowPathElement.swift */; };
 		1EF5C3DB2B88ACF400C1372F /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5C3DA2B88ACF400C1372F /* Weak.swift */; };
 		1EF5C3DF2B88B61100C1372F /* OrderedDictionary+Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5C3DE2B88B61100C1372F /* OrderedDictionary+Weak.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +56,8 @@
 		1E05E34B2B83FA5600F22AA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1E05E3522B83FA5800F22AA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E05E3572B83FA5800F22AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E2B25552B98F48600F72687 /* FlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowProtocol.swift; sourceTree = "<group>"; };
+		1E2B25582B990E3F00F72687 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		1E41CD1E2B95DADF003EB9B4 /* View+SnapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SnapKit.swift"; sourceTree = "<group>"; };
 		1E41CD202B95DB04003EB9B4 /* NiblessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessController.swift; sourceTree = "<group>"; };
 		1E41CD222B95DB1D003EB9B4 /* KindaTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KindaTabController.swift; sourceTree = "<group>"; };
@@ -66,9 +77,16 @@
 		1E70F8542B97244B00E4FBE7 /* TabbedContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedContainerController.swift; sourceTree = "<group>"; };
 		1E70F8562B972BD600E4FBE7 /* SEVDetailsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEVDetailsFlow.swift; sourceTree = "<group>"; };
 		1E70F85A2B97477100E4FBE7 /* SEVSubDetailsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEVSubDetailsFlow.swift; sourceTree = "<group>"; };
+		1E71E9A82B991642000ADAE4 /* MainFlow+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainFlow+Factory.swift"; sourceTree = "<group>"; };
+		1E71E9AB2B991727000ADAE4 /* PathObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathObserver.swift; sourceTree = "<group>"; };
+		1E71E9AD2B99188A000ADAE4 /* ProfileFlow+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileFlow+Factory.swift"; sourceTree = "<group>"; };
+		1E71E9AF2B991915000ADAE4 /* FavouritesFlow+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritesFlow+Factory.swift"; sourceTree = "<group>"; };
+		1E71E9B12B992069000ADAE4 /* ScoresFlow+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScoresFlow+Factory.swift"; sourceTree = "<group>"; };
+		1E71E9B32B9925AE000ADAE4 /* SEVDetailsFlow+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SEVDetailsFlow+Factory.swift"; sourceTree = "<group>"; };
 		1E9216C22B84A85B0026B5D9 /* TaggedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedType.swift; sourceTree = "<group>"; };
 		1E9216CB2B84ACFF0026B5D9 /* BaseFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlow.swift; sourceTree = "<group>"; };
 		1E9216D22B85DAF60026B5D9 /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		1EB641C32B98D45F005E0536 /* FlowPathElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowPathElement.swift; sourceTree = "<group>"; };
 		1EF5C3DA2B88ACF400C1372F /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		1EF5C3DE2B88B61100C1372F /* OrderedDictionary+Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Weak.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,11 +142,13 @@
 		1E41CD322B960F2C003EB9B4 /* Off Scope */ = {
 			isa = PBXGroup;
 			children = (
+				1E70F8502B97135B00E4FBE7 /* ClassNameProtocol.swift */,
+				1E70F84C2B9711C900E4FBE7 /* Logger.swift */,
+				1E71E9AB2B991727000ADAE4 /* PathObserver.swift */,
 				1E70F84F2B97134000E4FBE7 /* Collections */,
+				1E71E9AA2B991697000ADAE4 /* Factories */,
 				1E41CD342B960F77003EB9B4 /* Types */,
 				1E41CD332B960F6D003EB9B4 /* ViewKit */,
-				1E70F84C2B9711C900E4FBE7 /* Logger.swift */,
-				1E70F8502B97135B00E4FBE7 /* ClassNameProtocol.swift */,
 			);
 			path = "Off Scope";
 			sourceTree = "<group>";
@@ -199,10 +219,25 @@
 			path = Scores;
 			sourceTree = "<group>";
 		};
+		1E71E9AA2B991697000ADAE4 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				1E71E9AF2B991915000ADAE4 /* FavouritesFlow+Factory.swift */,
+				1E71E9A82B991642000ADAE4 /* MainFlow+Factory.swift */,
+				1E71E9AD2B99188A000ADAE4 /* ProfileFlow+Factory.swift */,
+				1E71E9B12B992069000ADAE4 /* ScoresFlow+Factory.swift */,
+				1E71E9B32B9925AE000ADAE4 /* SEVDetailsFlow+Factory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		1E9216CA2B84A8C80026B5D9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				1E9216CB2B84ACFF0026B5D9 /* BaseFlow.swift */,
+				1EB641C32B98D45F005E0536 /* FlowPathElement.swift */,
+				1E2B25552B98F48600F72687 /* FlowProtocol.swift */,
+				1E2B25582B990E3F00F72687 /* Tags.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -210,9 +245,9 @@
 		1EF5C3E92B88C89300C1372F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1E70F8472B970CBE00E4FBE7 /* Scores */,
 				1E70F8482B970CD700E4FBE7 /* Favourites */,
 				1E70F8492B970CDE00E4FBE7 /* Profile */,
+				1E70F8472B970CBE00E4FBE7 /* Scores */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,10 +255,10 @@
 		1EF5C3EA2B88D7E600C1372F /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				1E41CD242B95DB47003EB9B4 /* MainFlow.swift */,
-				1E70F85C2B97477E00E4FBE7 /* Scores */,
 				1E41CD282B95FB5E003EB9B4 /* FavouritesFlow.swift */,
+				1E41CD242B95DB47003EB9B4 /* MainFlow.swift */,
 				1E41CD2A2B95FB77003EB9B4 /* ProfileFlow.swift */,
+				1E70F85C2B97477E00E4FBE7 /* Scores */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -334,25 +369,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E71E9AE2B99188A000ADAE4 /* ProfileFlow+Factory.swift in Sources */,
 				1E9216CC2B84ACFF0026B5D9 /* BaseFlow.swift in Sources */,
 				1E41CD2F2B960BE8003EB9B4 /* FavouritesController.swift in Sources */,
+				1EB641C42B98D45F005E0536 /* FlowPathElement.swift in Sources */,
 				1E05E34A2B83FA5600F22AA0 /* AppDelegate.swift in Sources */,
 				1E41CD232B95DB1D003EB9B4 /* KindaTabController.swift in Sources */,
 				1E9216D32B85DAF60026B5D9 /* OrderedDictionary.swift in Sources */,
 				1E41CD292B95FB5E003EB9B4 /* FavouritesFlow.swift in Sources */,
 				1EF5C3DF2B88B61100C1372F /* OrderedDictionary+Weak.swift in Sources */,
+				1E71E9B42B9925AE000ADAE4 /* SEVDetailsFlow+Factory.swift in Sources */,
+				1E2B25562B98F48600F72687 /* FlowProtocol.swift in Sources */,
 				1E41CD212B95DB04003EB9B4 /* NiblessController.swift in Sources */,
+				1E71E9B02B991915000ADAE4 /* FavouritesFlow+Factory.swift in Sources */,
 				1E41CD272B95FB51003EB9B4 /* ScoresFlow.swift in Sources */,
 				1EF5C3DB2B88ACF400C1372F /* Weak.swift in Sources */,
+				1E71E9AC2B991727000ADAE4 /* PathObserver.swift in Sources */,
 				1E70F8512B97135B00E4FBE7 /* ClassNameProtocol.swift in Sources */,
 				1E41CD2D2B960A3B003EB9B4 /* ScoresController.swift in Sources */,
 				1E41CD3A2B962400003EB9B4 /* Array+Extensions.swift in Sources */,
 				1E41CD1F2B95DADF003EB9B4 /* View+SnapKit.swift in Sources */,
+				1E2B25592B990E3F00F72687 /* Tags.swift in Sources */,
 				1E70F8462B9708F100E4FBE7 /* SceneDelegate+Shared.swift in Sources */,
 				1E41CD252B95DB47003EB9B4 /* MainFlow.swift in Sources */,
 				1E05E34C2B83FA5600F22AA0 /* SceneDelegate.swift in Sources */,
 				1E41CD362B961283003EB9B4 /* MockedListController.swift in Sources */,
 				1E41CD382B961EBA003EB9B4 /* SEVController.swift in Sources */,
+				1E71E9B22B992069000ADAE4 /* ScoresFlow+Factory.swift in Sources */,
 				1E70F8552B97244B00E4FBE7 /* TabbedContainerController.swift in Sources */,
 				1E9216C32B84A85B0026B5D9 /* TaggedType.swift in Sources */,
 				1E41CD2B2B95FB77003EB9B4 /* ProfileFlow.swift in Sources */,
@@ -360,6 +403,7 @@
 				1E41CD312B960BF0003EB9B4 /* ProfileController.swift in Sources */,
 				1E70F84D2B9711C900E4FBE7 /* Logger.swift in Sources */,
 				1E70F8572B972BD600E4FBE7 /* SEVDetailsFlow.swift in Sources */,
+				1E71E9A92B991642000ADAE4 /* MainFlow+Factory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,46 +1,50 @@
 //  Created by Roman Suvorov (kikiwora)
 
 import UIKit
-import OSLog
 import Convenient_Operators
-import Convenient_Collections
-import Convenient_Concurrency
+
+// MARK: - SEVSubDetailsFlowScreen
+
+enum SEVSubDetailsFlowScreen: ScreenID, ScreenEnumType {
+  case microTab1
+  case microTab2
+  case microTab3
+}
 
 // MARK: - SEVSubDetailsFlow
 
-final class SEVSubDetailsFlow: AnyFlow { typealias ScreenID = TaggedType<String, SEVSubDetailsFlow>
-  enum Screen: ScreenID, CaseIterable {
-    case microTab1
-    case microTab2
-    case microTab3
-  }
-
-  // MARK: - Subflow graph
-
-  var initialScreen: Screen = .microTab1
-  var screenStack: [Screen] = [.microTab1] { didSet {
-    NotificationCenter.default.post(name: .didChangePath, object: nil)
-  }}
-
-  var currentScreen: Screen { screenStack.last! } // swiftlint:disable:this force_unwrapping
-
-  private(set) var childFlowsByScreen: OrderedDictionary<Screen, Weak<BaseFlow>> = .empty
-
-  var shouldIgnoreInitialPath: Bool { false }
+final class SEVSubDetailsFlow: BaseFlow<SEVSubDetailsFlowScreen> {
+  override var initialScreen: Screen { .microTab1 }
+  override var shouldIgnoreInitialPath: Bool { false }
 
   // MARK: - Child controllers
 
-  private weak var pagingContainer: TabbedContainerController<ScreenID>?
+  private weak var pagingContainer: TabbedContainerController<ScreenID>? // swiftlint:disable:this implicitly_unwrapped_optional
 
   // MARK: - Life cycle
 
+  override func start() {
+    super.start()
+
+    self.pagingContainer = containerController() as? TabbedContainerController<ScreenID>
+  }
+
+  // ⚠️
+  // ⚠️
+  // ⚠️
+  // ⚠️              IGNORE THIS FILE — MOCK
+  // ⚠️
+  // ⚠️
+
   public func containerController() -> UIViewController {
+    if let pagingContainer { return pagingContainer }
+
     let newPagingSubDetails = TabbedContainerController<ScreenID>( // swiftlint:disable:this trailing_closure
-      with: Screen.allCases.reduce(into: [(SEVSubDetailsFlow.ScreenID, String)]()) { result, screen in
+      with: Screen.allCases.reduce(into: [(ScreenID, String)]()) { result, screen in
         result.append((screen.rawValue, screen.rawValue.value))
       },
-      controllerProvider: { [weak self] screenID in guard let self else { fatalError("Attempt to create child flow of a nil flow") }
-        return self.tabController(by: Screen(rawValue: screenID)!)() // swiftlint:disable:this force_unwrapping
+      controllerProvider: { [unowned self] screenID in
+        tabController(by: Screen(rawValue: screenID)!)() // swiftlint:disable:this force_unwrapping
       }
     ) => {
       $0.navigation = self
@@ -51,57 +55,39 @@ final class SEVSubDetailsFlow: AnyFlow { typealias ScreenID = TaggedType<String,
 
   // MARK: - Public interface
 
-  func navigate(by path: [FlowPath]) {
-    var path = path
-    let first = path.removeFirst()
-
-    if let screen = Screen(rawValue: ScreenID(value: first.value)) {
-      navigate(to: screen)
-    }
-
-    currentChildFlow?.navigate(by: path)
-  }
-
-  private func navigate(to screen: Screen) {
-    // NOTE: This is a Mock
-
+  override func navigate(to screen: Screen) {
     guard screenStack != [screen] else { return }
 
     pagingContainer?.setActiveTab(byID: screen.rawValue)
-    screenStack = [screen]
+    super.didStartRegisteredSubModule(for: screen, presentationType: .replace)
   }
 
   // MARK: - Flow factories
 
-  private(set) lazy var flowFactories: [Screen: FlowFactory] = .empty
-  private(set) lazy var moduleFactories: [Screen: ModuleFactory] = .empty
-
   private func tabController(by screen: Screen) -> () -> UIViewController {
-    return { UIViewController() => {
+    { UIViewController() => {
       $0.view.backgroundColor = .yellow
       $0.addLabel("Screen: \(screen.rawValue.value)")
     } }
   }
 }
 
-// MARK: - SEVSubDetailsNavProtocol
+// MARK: - SEVSubDetailsFlow
 
 extension SEVSubDetailsFlow: TabbedContainerNavProtocol {
   func didScrollToTab(by id: any AnyTaggedType) {
-    guard let id = id as? ScreenID, let nextScreen = Screen(rawValue: id) else {
-      fatalError("Incorrect ScreenID type")
-    }
+    guard let id = id as? ScreenID, let nextScreen = Screen(rawValue: id) else { fatalError("Incorrect ScreenID type") }
 
     guard screenStack != [nextScreen] else { return }
-    screenStack = [nextScreen]
+
+    super.didStartRegisteredSubModule(for: nextScreen, presentationType: .replace)
   }
 
   func didSelectTab(by id: any AnyTaggedType) {
-    guard let id = id as? ScreenID, let nextScreen = Screen(rawValue: id) else {
-      fatalError("Incorrect ScreenID type")
-    }
+    guard let id = id as? ScreenID, let nextScreen = Screen(rawValue: id) else { fatalError("Incorrect ScreenID type") }
 
     guard screenStack != [nextScreen] else { return }
-    screenStack = [nextScreen]
+
+    super.didStartRegisteredSubModule(for: nextScreen, presentationType: .replace)
   }
 }

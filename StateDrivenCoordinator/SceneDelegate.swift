@@ -2,8 +2,6 @@
 
 import UIKit
 import Convenient_Operators
-import Convenient_Concurrency
-import OSLog
 
 // MARK: - SceneDelegate
 
@@ -55,21 +53,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Called as the scene transitions from the foreground to the background.
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
-  }
-}
-
-// MARK: - Events Listeners
-
-extension Notification.Name {
-  static let didChangePath = Notification.Name("didChangePath")
-}
-
-private extension SceneDelegate {
-  func addPathUpdateObserver() {
-    NotificationCenter.default.addObserver(self, selector: #selector(handleNavigationPathChange), name: .didChangePath, object: nil)
-  }
-
-  @objc func handleNavigationPathChange() {
-    Logger.navigation.info("Path Changed: 📁 \(self.mainFlow!.path.asString())") // swiftlint:disable:this force_unwrapping
   }
 }
